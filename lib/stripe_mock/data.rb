@@ -264,7 +264,7 @@ module StripeMock
         },
         outcome: {
           network_status: "approved_by_network",
-          reason: null,
+          reason: nil,
           risk_level: "normal",
           risk_score: 24,
           seller_message: "Payment complete.",
