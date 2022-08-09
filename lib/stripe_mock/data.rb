@@ -160,6 +160,7 @@ module StripeMock
           custom_fields: nil,
           footer: nil
         },
+        metadata: {},
         sources: {
           object: "list",
           total_count: sources.size,
@@ -260,7 +261,15 @@ module StripeMock
         description: nil,
         dispute: nil,
         metadata: {
-        }
+        },
+        outcome: {
+          network_status: "approved_by_network",
+          reason: null,
+          risk_level: "normal",
+          risk_score: 24,
+          seller_message: "Payment complete.",
+          type: "authorized"
+        },
       }.merge(params)
     end
 
