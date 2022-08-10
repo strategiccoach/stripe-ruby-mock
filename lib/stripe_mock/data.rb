@@ -181,6 +181,7 @@ module StripeMock
 
     def self.mock_charge(params={})
       charge_id = params[:id] || "ch_1fD6uiR9FAA2zc"
+      year = (Time.now + 1.year).year
       currency = params[:currency] || StripeMock.default_currency
       {
         id: charge_id,
@@ -204,7 +205,7 @@ module StripeMock
             },
             country: "US",
             exp_month: 12,
-            exp_year: 2013,
+            exp_year: year,
             fingerprint: "3TQGpK9JoY1GgXPw",
             funding: "credit",
             installments: nil,
@@ -229,7 +230,7 @@ module StripeMock
           brand: "Visa",
           funding: "credit",
           exp_month: 12,
-          exp_year: 2013,
+          exp_year: year,
           fingerprint: "3TQGpK9JoY1GgXPw",
           country: "US",
           name: "name",
@@ -308,7 +309,7 @@ module StripeMock
         brand: "Visa",
         funding: "credit",
         exp_month: 4,
-        exp_year: 2016,
+        exp_year: (Time.now + 1.year).year,
         fingerprint: "wXWJT135mEK107G8",
         customer: "test_cus_default",
         country: "US",
@@ -719,7 +720,7 @@ module StripeMock
           :brand => 'Visa',
           :funding => 'credit',
           :exp_month => 9,
-          :exp_year => 2017,
+          :exp_year => (Time.now + 1.year).year,
           :fingerprint => 'JRRLXGh38NiYygM7',
           :customer => nil,
           :country => 'US',
@@ -1246,7 +1247,7 @@ module StripeMock
           last_payment_error: nil,
           livemode: false,
           metadata: {},
-          next_action: { type: "use_stripe_sdk" },
+          next_action: {},
           on_behalf_of: nil,
           payment_method: nil,
           payment_method_types: [
