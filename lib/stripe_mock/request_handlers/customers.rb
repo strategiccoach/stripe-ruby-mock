@@ -5,6 +5,7 @@ module StripeMock
       def Customers.included(klass)
         klass.add_handler 'post /v1/customers',                     :new_customer
         klass.add_handler 'post /v1/customers/([^/]*)',             :update_customer
+        klass.add_handler 'get /v1/customers/search',               :search_customers
         klass.add_handler 'get /v1/customers/([^/]*)',              :get_customer
         klass.add_handler 'delete /v1/customers/([^/]*)',           :delete_customer
         klass.add_handler 'get /v1/customers',                      :list_customers
@@ -133,6 +134,11 @@ module StripeMock
         end
 
         customer
+      end
+
+      def search_customers(route, method_url, params, headers)
+        stripe_account = headers && headers[:stripe_account] || Stripe.api_key
+        Data.mock_list_object(customers[stripe_account]&.values, params)
       end
 
       def list_customers(route, method_url, params, headers)
